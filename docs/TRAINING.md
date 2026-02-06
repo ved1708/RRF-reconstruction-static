@@ -254,7 +254,7 @@ conda run -n rf-3dgs --no-capture-output \
   python train.py -s "$RF_DATA" -m "$RF_MODEL_DIR" \
   --images spectrum \
   --start_checkpoint "$VISUAL_MODEL_DIR/chkpnt30000.pth" \
-  --iterations 10000 --eval
+  --iterations 45000 --eval
 
 echo "Reconstruction Complete!"
 ```
@@ -271,17 +271,6 @@ For GPUs with <8GB VRAM:
 python train.py \
   --resolution 2 \               # Half resolution (400×400)
   --densify_grad_threshold 0.0003 \  # More aggressive pruning
-  ...
-```
-
-### Debug Mode
-
-Enable debug logging:
-
-```bash
-python train.py \
-  --debug \
-  --test_iterations 500 1000 2000 5000 10000 \
   ...
 ```
 
@@ -482,7 +471,4 @@ After training:
 
 ---
 
-**Training Time Estimates** (RTX 3080):
-- Visual (30K iters): 2-4 hours
-- RF Fine-tuning (10K iters): 1-2 hours
-- **Total**: 3-6 hours
+**Training Time Estimates** (RTX A6000):
