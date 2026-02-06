@@ -438,8 +438,7 @@ python train.py \
   -m output/rf_model \
   --images spectrum \
   --start_checkpoint output/visual_model/chkpnt30000.pth \
-  --iterations 10000 \
-  --save_iterations 3000 7000 10000
+  --iterations 45000 \
 ```
 
 **Key Parameters:**
@@ -464,9 +463,7 @@ output/rf_model/
 ├── cameras.json
 ├── cfg_args
 ├── point_cloud/
-│   ├── iteration_3000/
-│   ├── iteration_7000/
-│   └── iteration_10000/
+│   └── iteration_45000/
 │       └── point_cloud.ply  # Final RRF model
 └── chkpnt10000.pth
 ```
@@ -499,7 +496,7 @@ python render.py \
 # Render RF test views
 python render.py \
   -m output/rf_model \
-  --iteration 10000
+  --iteration 45000
 ```
 
 **Output Structure:**
@@ -541,44 +538,13 @@ python metrics.py -m output/rf_model
 | Visual | 28-32 | 0.92-0.96 | 0.05-0.10 |
 | RF | 25-30 | 0.88-0.93 | 0.10-0.20 |
 
-### 5.3 RF Localization Evaluation
-
-Test RF-based localization using fingerprinting:
-
-```bash
-python evaluate_localization.py
-```
-
-**What it does:**
-1. Loads RF fingerprint dataset (`rf_dataset.pkl`)
-2. Extracts features: path gains, delays, power
-3. Trains k-NN classifier (k=5)
-4. Predicts user positions from RF measurements
-5. Computes localization error (RMSE)
-
-**Output:**
-- Console: Mean/median localization error
-- `localization_results.png`: Scatter plot of true vs predicted positions
-
 ---
 
 ## 6. Visualization
 
 ### 6.1 Interactive 3D Viewer
 
-View reconstructed RRF in WebGL viewer:
-
-```bash
-cd RF-3DGS/SIBR_viewers
-# Build viewer (first time only)
-cmake -B build -S . -DCMAKE_BUILD_TYPE=Release
-cmake --build build --config Release -j
-
-# Launch viewer
-./build/bin/SIBR_gaussianViewer_app \
-  -m ../output/rf_model \
-  --iteration 10000
-```
+View reconstructed RRF in WebGL viewer.
 
 **Viewer Controls:**
 - **Mouse**: Rotate view
@@ -587,23 +553,6 @@ cmake --build build --config Release -j
 - **Scroll**: Zoom
 - **Tab**: Toggle UI
 - **Space**: Screenshot
-
-### 6.2 Generate Video
-
-Create flythrough video:
-
-```bash
-python make_video.py \
-  --input output/rf_model/test/ours_10000/renders \
-  --output rf_reconstruction.mp4 \
-  --fps 30
-```
-
-**Options:**
-- `--method opencv`: Use OpenCV (faster)
-- `--method ffmpeg`: Use FFmpeg (better quality)
-
----
 
 ## 📊 Results
 
@@ -719,7 +668,7 @@ See `LICENSE` files in respective directories.
 
 ## 👤 Author
 
-Ved - RF-RRF Reconstruction Pipeline
+Ved - RRF Reconstruction Pipeline
 
 ---
 
