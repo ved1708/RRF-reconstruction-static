@@ -155,8 +155,8 @@ scene.view_settings.gamma = 1.0
 ```
 
 **Render Time**:
-- ~15-30 seconds per image (with RTX 3080)
-- Total: 2-3 hours for 300 images
+- ~1-3 seconds per image (with RTX A6000)
+- Total: 15-20 mins for 300 images
 
 ### 5. Output Format
 
