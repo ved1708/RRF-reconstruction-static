@@ -1,0 +1,102 @@
+# Requirements for RRF Reconstruction Pipeline
+
+# ===== Core Dependencies =====
+numpy>=1.23.0
+scipy>=1.9.0
+matplotlib>=3.5.0
+pillow>=9.0.0
+opencv-python>=4.7.0
+
+# ===== Deep Learning Frameworks =====
+torch>=2.0.0
+torchvision>=0.15.0
+tensorflow>=2.15.0
+tensorflow-gpu>=2.15.0  # For Sionna RT
+
+# ===== 3D Gaussian Splatting =====
+plyfile>=0.7.4
+tqdm>=4.65.0
+lpips>=0.1.4
+
+# ===== RF Simulation (Sionna) =====
+sionna>=0.18.0
+drjit>=0.4.0
+mitsuba>=3.0.0
+
+# ===== Blender Python API =====
+# Note: bpy (Blender Python) must be installed with Blender itself
+# Download Blender 3.6+ from https://www.blender.org/download/
+# Or install via: sudo snap install blender --classic
+
+# ===== Geometry Processing =====
+open3d>=0.17.0
+trimesh>=3.21.0
+
+# ===== Machine Learning Utilities =====
+scikit-learn>=1.2.0
+scikit-image>=0.20.0
+
+# ===== Visualization =====
+plotly>=5.14.0
+seaborn>=0.12.0
+
+# ===== Data Processing =====
+pandas>=1.5.0
+h5py>=3.8.0
+pickle5>=0.0.12
+
+# ===== System Utilities =====
+psutil>=5.9.0
+pyyaml>=6.0
+
+# ===== Optional: Web Viewer =====
+flask>=2.3.0
+flask-cors>=4.0.0
+
+# ===== Optional: Video Processing =====
+ffmpeg-python>=0.2.0
+imageio>=2.31.0
+imageio-ffmpeg>=0.4.8
+
+# ===== Optional: Jupyter Notebooks =====
+jupyter>=1.0.0
+ipywidgets>=8.0.0
+
+# ===== Development Tools =====
+pytest>=7.3.0
+black>=23.3.0
+flake8>=6.0.0
+
+# ===== GPU Requirements =====
+# CUDA 11.8 or higher
+# cuDNN 8.6 or higher
+# NVIDIA driver 520+ (for RTX GPUs)
+
+# ===== Hardware Recommendations =====
+# GPU: NVIDIA RTX 3080 or better (8GB+ VRAM)
+# RAM: 16GB+ system memory
+# Storage: 50GB+ free space (for datasets)
+# CPU: 8+ cores recommended for Blender rendering
+
+# ===== Installation Notes =====
+# 1. Install CUDA and cuDNN first
+# 2. Install PyTorch with CUDA: 
+#    conda install pytorch torchvision pytorch-cuda=11.8 -c pytorch -c nvidia
+# 3. Install TensorFlow with GPU support:
+#    pip install tensorflow[and-cuda]==2.15.0
+# 4. Install Sionna:
+#    pip install sionna
+# 5. Install remaining packages:
+#    pip install -r requirements.txt
+# 6. Install RF-3DGS submodules:
+#    cd RF-3DGS/submodules
+#    pip install ./diff-surfel-rasterization
+#    pip install ./simple-knn
+
+# ===== Verification Commands =====
+# Test PyTorch GPU:
+#   python -c "import torch; print(torch.cuda.is_available())"
+# Test TensorFlow GPU:
+#   python -c "import tensorflow as tf; print(tf.config.list_physical_devices('GPU'))"
+# Test Sionna:
+#   python -c "from sionna.rt import load_scene; print('Sionna OK')"

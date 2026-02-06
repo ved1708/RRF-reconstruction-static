@@ -1,0 +1,71 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+*.egg-info/
+dist/
+build/
+.ipynb_checkpoints/
+
+# Virtual Environments
+venv/
+env/
+ENV/
+
+# Large dataset directories
+dataset_visual/
+dataset_visual_v2/
+dataset_custom_scene_cbf/
+dataset_custom_scene_ideal_mpc/
+dataset_rf3dgs_28ghz/
+dataset_tutorial_cbf/
+
+# Output directories
+output/
+RF-3DGS/output/
+*.ply
+room_5x3x3_combined.ply
+artpark.ply
+
+# Pickle files (can be large)
+*.pkl
+rf_dataset.pkl
+
+# Generated result images
+*.png
+*.jpg
+*.jpeg
+!assets/*.png
+!assets/*.jpg
+
+# Videos
+*.mp4
+*.avi
+*.mov
+
+# Logs
+*.log
+
+# System files
+.DS_Store
+Thumbs.db
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Temporary files
+*.tmp
+*.bak
+*~
+
+# RF-3DGS submodule (if not tracking it)
+RF-3DGS/.git/
+
+# C++ build artifacts
+C:/
+build/
