@@ -145,36 +145,6 @@ Total Height (Z)     | 3.0000 m
 
 ---
 
-### 4. debug_scene.py
-
-**Purpose**: Visualize camera poses and scene geometry for debugging.
-
-**Usage**:
-```bash
-python debug_scene.py
-```
-
-**Features**:
-- Loads COLMAP camera poses
-- Visualizes camera frustums in 3D
-- Overlays room mesh
-- Checks for invalid poses (cameras outside room, etc.)
-
----
-
-### 5. las2ply.py
-
-**Purpose**: Convert LAS/LAZ point cloud files to PLY format.
-
-**Usage**:
-```bash
-python las2ply.py input.las output.ply
-```
-
-Used for processing real-world LiDAR scans (e.g., ArtPark dataset).
-
----
-
 ## PLY File Format
 
 All generated PLY files use **binary little-endian** format:
