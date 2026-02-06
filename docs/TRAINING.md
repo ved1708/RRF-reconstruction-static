@@ -166,21 +166,9 @@ python train.py \
   -m output/rf_model \
   --images spectrum \
   --start_checkpoint output/visual_model/chkpnt30000.pth \
-  --iterations 10000 \
-  --save_iterations 3000 7000 10000 \
-  --test_iterations 3000 7000 10000 \
+  --iterations 45000 \
   --eval
 ```
-
-### Key Parameters
-
-| Parameter | Value | Description |
-|-----------|-------|-------------|
-| `-s, --source_path` | `dataset_custom_scene_ideal_mpc/` | Path to RF dataset |
-| `-m, --model_path` | `output/rf_model` | Output directory |
-| `--images` | `spectrum` | Subfolder with RF heatmaps |
-| `--start_checkpoint` | `output/visual_model/chkpnt30000.pth` | Visual checkpoint |
-| `--iterations` | `10000` | Fewer iterations (geometry already learned) |
 
 ### Fine-tuning Process
 
@@ -226,31 +214,12 @@ output/rf_model/
 └── chkpnt10000.pth               # Final checkpoint
 ```
 
-### Monitoring Fine-tuning
-
-**Console Output**:
-```
-[RF Fine-tuning] Starting from checkpoint: output/visual_model/chkpnt30000.pth
-Loaded 123,456 Gaussians
-
-Iteration 0:    Loss: 0.3421  L1: 0.2456  PSNR: 20.12 dB  Time: 0.08s
-Iteration 1000: Loss: 0.1234  L1: 0.0987  PSNR: 25.67 dB  Time: 0.07s
-Iteration 5000: Loss: 0.0621  L1: 0.0512  PSNR: 28.34 dB  Time: 0.07s
-Iteration 10000: Loss: 0.0432  L1: 0.0378  PSNR: 29.87 dB  Time: 0.07s
-
-[ITER 3000] Evaluating test: L1 0.0632 PSNR 26.12 SSIM 0.8923
-[ITER 7000] Evaluating test: L1 0.0521 PSNR 28.45 SSIM 0.9145
-[ITER 10000] Evaluating test: L1 0.0456 PSNR 29.67 SSIM 0.9234
-
-RF Fine-tuning complete!
-```
-
 **Success Indicators**:
 - Loss decreases to <0.06 by iteration 10,000
 - PSNR >26 dB on RF test set (lower than visual, expected)
 - RF heatmaps show realistic propagation patterns
 
-**Training time**: ~1-2 hours on RTX 3080
+**Training time**: ~15-20 mins on RTX A6000
 
 ---
 
@@ -302,18 +271,6 @@ For GPUs with <8GB VRAM:
 python train.py \
   --resolution 2 \               # Half resolution (400×400)
   --densify_grad_threshold 0.0003 \  # More aggressive pruning
-  ...
-```
-
-### Higher Quality
-
-For better reconstruction quality:
-
-```bash
-python train.py \
-  --iterations 50000 \           # More iterations
-  --densification_interval 50 \  # More frequent densification
-  --sh_degree 3 \                # Max SH degree (view-dependent effects)
   ...
 ```
 
@@ -529,8 +486,3 @@ After training:
 - Visual (30K iters): 2-4 hours
 - RF Fine-tuning (10K iters): 1-2 hours
 - **Total**: 3-6 hours
-
-**GPU Memory Requirements**:
-- Visual training: ~6-8 GB
-- RF fine-tuning: ~4-6 GB
-- Rendering: ~2-4 GB
