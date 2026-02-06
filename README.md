@@ -261,7 +261,7 @@ dataset_visual_v2/
 
 **Tips:**
 - Requires ~10GB GPU memory for rendering
-- Takes ~2-3 hours for 300 images at 800px resolution
+- Takes ~1-2 hours for 300 images at 800px resolution
 - Ensure Blender has GPU rendering enabled in preferences
 
 ---
